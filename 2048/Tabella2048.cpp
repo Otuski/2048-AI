@@ -8,6 +8,7 @@
 
 static int findlen(int);
 static void clearScreen();
+static bool confrontaMatrici(const int[4][4], const int[4][4]);
 
 void Tabella2048::aggiungiNumero()
 {
@@ -37,6 +38,10 @@ Tabella2048::Tabella2048():
 
 void Tabella2048::moveW()
 {
+    //copia la matrice
+    int copia[4][4];
+    std::memcpy(&copia, &matrice, sizeof(int) * 16);
+
     for (int i = 0; i < 4; i++) {
         int p = 0;
         bool merged[4] = { false, false, false, false };
@@ -58,12 +63,19 @@ void Tabella2048::moveW()
             }
         }
     }
-    aggiungiNumero();
+    //controllo mossa valida
+    if (!confrontaMatrici(copia, matrice)) {
+        aggiungiNumero();
+    }
     stampa();
 }
 
 void Tabella2048::moveA()
 {
+    //copia la matrice
+    int copia[4][4];
+    std::memcpy(&copia, &matrice, sizeof(int) * 16);
+
     for (int i = 0; i < 4; i++) {
         int p = 0;
         bool merged[4] = { false, false, false, false };
@@ -85,11 +97,19 @@ void Tabella2048::moveA()
             }
         }
     }
-    aggiungiNumero();
+    //controllo mossa valida
+    if (!confrontaMatrici(copia, matrice)) {
+        aggiungiNumero();
+    }
     stampa();
 }
 
 void Tabella2048::moveS() {
+
+    //copia la matrice
+    int copia[4][4];
+    std::memcpy(&copia, &matrice, sizeof(int) * 16);
+
     for (int i = 0; i < 4; i++) {
         int p = 3;
         bool merged[4] = { false, false, false, false };
@@ -111,13 +131,19 @@ void Tabella2048::moveS() {
             }
         }
     }
-    aggiungiNumero();
+    //controllo mossa valida
+    if (!confrontaMatrici(copia, matrice)) {
+        aggiungiNumero();
+    }
     stampa();
 }
 
 void Tabella2048::moveD()
 {
-    //int copia[4][4] = { matrice[0], matrice[1], matrice[2],matrice[3] };
+    //copia la matrice
+    int copia[4][4];
+    std::memcpy(&copia, &matrice, sizeof(int)*16);
+
     for (int i = 0; i < 4; i++) {
         int p = 3;
         bool merged[4] = { false, false, false, false };
@@ -139,13 +165,16 @@ void Tabella2048::moveD()
             }
         }
     }
-    aggiungiNumero();
+    //controllo mossa valida
+    if (!confrontaMatrici(copia, matrice)) { 
+        aggiungiNumero(); 
+    }
     stampa();
 }
 
 void Tabella2048::stampa() const
 {
-    std::cout << "\n\t\t\t\t\t=============== 2048 ===============\n\n";
+    std::cout << "\n\t\t\t\t\t============== 2048 ==============\n\n";
     for (int i = 0; i < 4; i++) {
         std::cout << "\t\t\t\t\t---------------------------------\n";
         std::cout << "\t\t\t\t\t";
@@ -174,14 +203,14 @@ void Tabella2048::stampa() const
 void Tabella2048::avviaGioco()
 {
     stampa();
-    char scelta;
+    std::string scelta;
     while (true) {
         std::cout << "\t\t\t\t\t-> ";
         std::cin >> scelta;
 
         clearScreen();
 
-        switch (tolower(scelta)) {
+        switch (tolower(scelta[0])) {
         case 'a': moveA(); break;
         case 'd': moveD(); break;
         case 'w': moveW(); break;
@@ -220,4 +249,15 @@ static void clearScreen() {
 #else
     system("clear"); // Comando per Unix/Linux/Mac
 #endif
+}
+
+bool confrontaMatrici(const int matrice1[4][4], const int matrice2[4][4]) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (matrice1[i][j] != matrice2[i][j]) {
+                return false; // Una differenza trovata
+            }
+        }
+    }
+    return true; // Nessuna differenza trovata
 }
