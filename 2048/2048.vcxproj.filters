@@ -21,9 +21,27 @@
     <ClCompile Include="Tabella2048.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="Neuron.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuronLayer.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuralNet.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tabella2048.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="Neuron.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuronLayer.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuralNet.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
