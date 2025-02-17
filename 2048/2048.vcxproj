@@ -131,6 +131,7 @@
     <ClCompile Include="NeuralNet.cpp" />
     <ClCompile Include="Neuron.cpp" />
     <ClCompile Include="NeuronLayer.cpp" />
+    <ClCompile Include="RandomAI.cpp" />
     <ClCompile Include="Tabella2048.cpp" />
   </ItemGroup>
   <ItemGroup>

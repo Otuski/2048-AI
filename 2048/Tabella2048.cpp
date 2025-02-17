@@ -174,6 +174,7 @@ void Tabella2048::moveD()
 
 void Tabella2048::stampa() const
 {
+    clearScreen();
     std::cout << "\n\t\t\t\t\t============== 2048 ==============\n\n";
     for (int i = 0; i < 4; i++) {
         std::cout << "\t\t\t\t\t---------------------------------\n";
