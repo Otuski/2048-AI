@@ -18,16 +18,16 @@
     <ClCompile Include="2048.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="Tabella2048.cpp">
+    <ClCompile Include="Table2048.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="Neuron.cpp">
+    <ClCompile Include="NeuralNetwork\Neuron.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="NeuronLayer.cpp">
+    <ClCompile Include="NeuralNetwork\NeuronLayer.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="NeuralNet.cpp">
+    <ClCompile Include="NeuralNetwork\NeuralNetwork.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="RandomAI.cpp">
@@ -35,16 +35,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tabella2048.h">
+    <ClInclude Include="Table2048.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="Neuron.h">
+    <ClInclude Include="NeuralNetwork\Neuron.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="NeuronLayer.h">
+    <ClInclude Include="NeuralNetwork\NeuronLayer.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="NeuralNet.h">
+    <ClInclude Include="NeuralNetwork\NeuralNetwork.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomAI.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

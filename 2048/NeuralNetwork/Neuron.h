@@ -1,7 +1,8 @@
 #pragma once
 
 #include <vector>
-class Neuron //potrebbe tranquillamente essere una struct
+
+class Neuron
 {
 private:
 	double m_Bias;

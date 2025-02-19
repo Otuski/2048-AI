@@ -1,6 +1,8 @@
 #pragma once
+
 #include <vector>
 #include "Neuron.h"
+
 class NeuronLayer
 {
 private:

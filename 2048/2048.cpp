@@ -1,9 +1,9 @@
-﻿#include <iostream>
-#include "Tabella2048.h"
-#include "Neuron.h"
-#include "NeuronLayer.h"
-#include "NeuralNet.h"
-#include "RandomAI.cpp"
+﻿
+#include "Table2048.h"
+
+#include "NeuralNetwork.h"
+#include "RandomAI.h"
+#include <iostream>
 #include <vector>
 #include <windows.h>
 static void menu();
@@ -11,23 +11,16 @@ static void menu();
 int main() {
     
     menu();
-    Tabella2048 tabella;
+    Table2048 tabella;
     RandomAI ai(tabella);
-    tabella.stampa();
-    int tempo = 0, scorso_punteggio = 0;
-    while (true) {
+
+    char move;
+    while (move = ai.move()) {
         //Sleep(100);
-        ai.move();
-        if (ai.m_table.punteggio == scorso_punteggio) {
-            tempo++;
-        }
-        else {
-            tempo = 0;
-        }
-        if (tempo == 20)
-            break;
-        scorso_punteggio = ai.m_table.punteggio;
-        std::cout << "TEMPOOOOOOO:" << tempo;
+        
+        ai.m_table.move(move);
+        ai.m_table.print();
+        std::cout << "\t\t\t\t\t" << move;
     }
     std::cout << "FINE!!";
     
