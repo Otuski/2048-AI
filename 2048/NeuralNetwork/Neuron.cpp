@@ -25,6 +25,26 @@ void Neuron::mutate(double mutationRate)
     }
 }
 
+void Neuron::save(std::ostream& out)
+{
+    // Salviamo prima il bias, poi il numero di pesi, e infine i pesi
+    out << m_Bias << " " << m_Weights.size() << " ";
+    for (double weight : m_Weights) {
+        out << weight << " ";
+    }
+    out << "\n";
+}
+
+void Neuron::load(std::istream& in)
+{
+    int numWeights;
+    in >> m_Bias >> numWeights;
+    m_Weights.resize(numWeights);
+    for (int i = 0; i < numWeights; i++) {
+        in >> m_Weights[i];
+    }
+}
+
 Neuron::Neuron(int numInputs) {
     std::random_device rd;
     std::mt19937 gen(rd());

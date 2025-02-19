@@ -3,6 +3,8 @@
 
 #include "NeuralNetwork.h"
 #include "RobinAI.h"
+
+#include <fstream>
 #include <iostream>
 #include <vector>
 #include <windows.h>
@@ -10,12 +12,22 @@ static void menu();
 
 int main() {
     
-    menu();
+    //menu();
     Table2048 tabella;
 
     int layers[2] = {4, 4};
+    std::vector<double> inputs = {0, 0, 0, 0};
     NeuralNetwork nn(4, layers, 2);
+
+    std::vector<double> out = nn.forward(inputs);
     
+    std::ofstream outFile("network.txt");
+    nn.save(outFile);
+    outFile.close();
+
+    char f;
+    std::cin >> f;
+    /*
     RobinAI ai(tabella);
 
     char move;
@@ -26,7 +38,7 @@ int main() {
         std::cout << "\t\t\t\t\t" << move;
     }
     std::cout << "FINE!!";
-    
+    */
     
 }
 

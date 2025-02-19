@@ -19,3 +19,28 @@ std::vector<double> NeuronLayer::forward(std::vector<double> inputs)
 	return output;
 }
 
+void NeuronLayer::mutate(double mutationRate)
+{
+	for (Neuron& neuron : m_Neurons) {
+		neuron.mutate(mutationRate);
+	}
+}
+
+void NeuronLayer::save(std::ostream& out)
+{
+	out << m_Neurons.size() << "\n";
+	for (Neuron& neuron : m_Neurons) {
+		neuron.save(out);
+	}
+}
+
+void NeuronLayer::load(std::istream& in)
+{
+	int numNeurons;
+	in >> numNeurons;
+	m_Neurons.resize(numNeurons, Neuron(0)); // Assicurati di avere un costruttore adeguato
+	for (Neuron& neuron : m_Neurons) {
+		neuron.load(in);
+	}
+}
+

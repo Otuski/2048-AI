@@ -14,5 +14,8 @@ public:
 	std::vector<double> forward(std::vector<double> inputs);
 	void mutate(double mutationRate);
 
+	void save(std::ostream& out);
+	void load(std::istream& in);
+
 };
 

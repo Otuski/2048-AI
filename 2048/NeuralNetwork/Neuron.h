@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <ostream>
+#include <istream>
 
 class Neuron
 {
@@ -13,5 +15,8 @@ public:
 
 	double forward(std::vector<double> input);
 	void mutate(double mutationRate);
+
+	void save(std::ostream& out);
+	void load(std::istream& in);
 };
 

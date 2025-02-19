@@ -39,4 +39,29 @@ std::vector<double> NeuralNetwork::forward(std::vector<double> inputs)
 	return intermediate;
 }
 
+void NeuralNetwork::mutate(double mutationRate)
+{
+	for (NeuronLayer& layer : m_Layers) {
+		layer.mutate(mutationRate);
+	}
+}
+
+void NeuralNetwork::save(std::ostream& out)
+{
+	out << m_Layers.size() << "\n";
+	for (NeuronLayer& layer : m_Layers) {
+		layer.save(out);
+	}
+}
+
+void NeuralNetwork::load(std::istream& in)
+{
+	int numLayers;
+	in >> numLayers;
+	m_Layers.resize(numLayers, NeuronLayer(0, 0)); // Assicurati di avere un costruttore adeguato
+	for (NeuronLayer& layer : m_Layers) {
+		layer.load(in);
+	}
+}
+
 
