@@ -1,11 +1,8 @@
 #include "RandomAI.h"
-#include "Table2048.h"
 #include <cstdlib>
 #include <iostream>
 
-
-RandomAI::RandomAI(Table2048 table)
-	:m_table(table) {}
+RandomAI::RandomAI(Table2048 table): m_table(table) {}
 
 char RandomAI::move() {
 	int select = rand()%4;

@@ -11,7 +11,20 @@ double NeuralNetwork::activation(double x)
 NeuralNetwork::NeuralNetwork(std::vector<NeuronLayer> layers)
 	: m_Layers(layers) {}
 
-std::vector<double> NeuralNetwork::forward(static std::vector<double> inputs) 
+NeuralNetwork::NeuralNetwork(int numInputs, int widthLayers[], int numLayers)
+{
+
+	m_Layers.push_back( NeuronLayer(numInputs, widthLayers[0]) );
+
+	for (int i = 1; i < numLayers; i++) {
+		m_Layers.push_back( NeuronLayer(widthLayers[i - 1], widthLayers[0]) );
+	}
+	
+}
+
+
+
+std::vector<double> NeuralNetwork::forward(std::vector<double> inputs) 
 {
 	std::vector<double> intermediate;
 	for (int i = 0; i < inputs.size(); i++) {

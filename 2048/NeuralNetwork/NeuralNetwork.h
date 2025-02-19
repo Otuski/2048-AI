@@ -12,6 +12,8 @@ private:
 public:
 	NeuralNetwork(std::vector<NeuronLayer> layers);
 
+	NeuralNetwork(int numInputs, int widthLayers[], int numLayers); //Num Layers è il numero di di interi dell'array widthLayers[]
+
 	std::vector<double> forward(std::vector<double> inputs);
 
 };

@@ -3,11 +3,11 @@
 #include "AI.h"
 #include "Table2048.h"
 
-class RandomAI : AI {
+class RobinAI : AI {
 public:
 	Table2048 m_table;
 
-	RandomAI(Table2048 table);
+	RobinAI(Table2048 table);
 	virtual char move();
 
 };

@@ -2,7 +2,7 @@
 #include "Table2048.h"
 
 #include "NeuralNetwork.h"
-#include "RandomAI.h"
+#include "RobinAI.h"
 #include <iostream>
 #include <vector>
 #include <windows.h>
@@ -12,17 +12,21 @@ int main() {
     
     menu();
     Table2048 tabella;
-    RandomAI ai(tabella);
+
+    int layers[2] = {4, 4};
+    NeuralNetwork nn(4, layers, 2);
+    
+    RobinAI ai(tabella);
 
     char move;
     while (move = ai.move()) {
-        //Sleep(100);
         
         ai.m_table.move(move);
         ai.m_table.print();
         std::cout << "\t\t\t\t\t" << move;
     }
     std::cout << "FINE!!";
+    
     
 }
 

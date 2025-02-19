@@ -3,6 +3,13 @@
 NeuronLayer::NeuronLayer(std::vector<Neuron> neurons)
 	:m_Neurons(neurons) {}
 
+NeuronLayer::NeuronLayer(int numInputs, int width)
+{
+	for (int i = 0; i < width; i++) {
+		m_Neurons.push_back(Neuron(numInputs));
+	}
+}
+
 std::vector<double> NeuronLayer::forward(std::vector<double> inputs)
 {
 	std::vector<double> output;

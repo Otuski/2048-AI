@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)/NeuralNetwork;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/NeuralNetwork;$(ProjectDir)/AI;$(ProjectDir)/Game;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,7 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)/NeuralNetwork;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/NeuralNetwork;$(ProjectDir)/AI;$(ProjectDir)/Game;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,19 +130,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="2048.cpp" />
+    <ClCompile Include="AI\RobinAI.cpp" />
     <ClCompile Include="NeuralNetwork\NeuralNetwork.cpp" />
     <ClCompile Include="NeuralNetwork\Neuron.cpp" />
     <ClCompile Include="NeuralNetwork\NeuronLayer.cpp" />
-    <ClCompile Include="RandomAI.cpp" />
-    <ClCompile Include="Table2048.cpp" />
+    <ClCompile Include="AI\RandomAI.cpp" />
+    <ClCompile Include="Game\Table2048.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AI.h" />
+    <ClInclude Include="AI\AI.h" />
+    <ClInclude Include="AI\RobinAI.h" />
     <ClInclude Include="NeuralNetwork\NeuralNetwork.h" />
     <ClInclude Include="NeuralNetwork\Neuron.h" />
     <ClInclude Include="NeuralNetwork\NeuronLayer.h" />
-    <ClInclude Include="RandomAI.h" />
-    <ClInclude Include="Table2048.h" />
+    <ClInclude Include="AI\RandomAI.h" />
+    <ClInclude Include="Game\Table2048.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
