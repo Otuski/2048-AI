@@ -3,8 +3,8 @@
 NeuralNetworkAI::NeuralNetworkAI(const std::string& filename)
 	: m_network(filename) {}
 
-NeuralNetworkAI::NeuralNetworkAI(int numInputs, int widthLayers[], int numLayers)
-	: m_network(numInputs, widthLayers, numLayers) {}
+NeuralNetworkAI::NeuralNetworkAI(int widthLayers[], int numLayers)
+	: m_network(16, widthLayers, numLayers) {}
 
 char NeuralNetworkAI::move()
 {

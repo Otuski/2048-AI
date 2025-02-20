@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)/NeuralNetwork;$(ProjectDir)/AI;$(ProjectDir)/Game;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/NeuralNetwork;$(ProjectDir)/AI;$(ProjectDir)/Game;$(ProjectDir)/Trainer</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,7 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)/NeuralNetwork;$(ProjectDir)/AI;$(ProjectDir)/Game;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/NeuralNetwork;$(ProjectDir)/AI;$(ProjectDir)/Game;$(ProjectDir)/Trainer</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="2048.cpp" />
+    <ClCompile Include="Trainer\AITrainer.cpp" />
     <ClCompile Include="AI\NeuralNetworkAI.cpp" />
     <ClCompile Include="AI\RobinAI.cpp" />
     <ClCompile Include="NeuralNetwork\NeuralNetwork.cpp" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI\AI.h" />
+    <ClInclude Include="Trainer\AITrainer.h" />
     <ClInclude Include="AI\NeuralNetworkAI.h" />
     <ClInclude Include="AI\RobinAI.h" />
     <ClInclude Include="NeuralNetwork\NeuralNetwork.h" />

@@ -1,15 +1,11 @@
-﻿
-#include "Table2048.h"
-
-#include "NeuralNetwork.h"
-#include "NeuralNetworkAI.h"
-#include "RandomAI.h"
-
+﻿#include "AITrainer.h"
 
 #include <fstream>
 #include <iostream>
 #include <vector>
-#include <windows.h>
+#include <windows.h>//per Sleep(unsigned int milliseconds)
+
+
 static void menu();
 
 int main() {
@@ -25,7 +21,7 @@ int main() {
     */
     //NeuralNetworkAI ai("Networks/NU50exemple.txt");
 
-    RandomAI ai;
+    /*
 
     char move;
     while (move = ai.move()) {
@@ -35,8 +31,17 @@ int main() {
         std::cout << "\t\t\t\t\t" << move;
     }
     std::cout << "FINE!!";
+    */
+
+    AITrainer trainer;
+    int forma[] = {4, 4, 4, 4};
+    trainer.createGen(3, forma, 4);
+
+    trainer.playGen(1);
     
-    
+    char t;
+    std::cin >> t;
+
 }
 
 static void menu() {

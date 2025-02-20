@@ -18,6 +18,7 @@ public:
 	bool isValidMoveA();
 	bool isValidMoveS();
 	bool isValidMoveD();
+	bool isValidMove(char move);
 
 	void aggiungiNumero();
 	bool isGameOver();

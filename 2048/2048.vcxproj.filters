@@ -39,6 +39,9 @@
     <ClCompile Include="AI\NeuralNetworkAI.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="Trainer\AITrainer.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Table2048.h">
@@ -63,6 +66,9 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="AI\NeuralNetworkAI.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="Trainer\AITrainer.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

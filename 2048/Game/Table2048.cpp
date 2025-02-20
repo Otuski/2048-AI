@@ -419,3 +419,19 @@ bool Table2048::isValidMoveD()
     }
     return !confrontaMatrici(copia, matrice);
 }
+
+bool Table2048::isValidMove(char move)
+{
+    bool result = false;
+    switch (tolower(move)) {
+    case 'w':
+        return isValidMoveW();
+    case 'a':
+        return isValidMoveA();
+    case 's':
+        return isValidMoveS();
+    case 'd':
+        return isValidMoveD();
+    }
+    return false;
+}
