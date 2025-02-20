@@ -2,7 +2,9 @@
 #include "Table2048.h"
 
 #include "NeuralNetwork.h"
-#include "RobinAI.h"
+#include "NeuralNetworkAI.h"
+#include "RandomAI.h"
+
 
 #include <fstream>
 #include <iostream>
@@ -12,23 +14,18 @@ static void menu();
 
 int main() {
     
-    //menu();
-    Table2048 tabella;
+    menu();
+    /* per creare NU50
+    int layers[4] = {16, 16, 14, 4};
 
-    int layers[2] = {4, 4};
-    std::vector<double> inputs = {0, 0, 0, 0};
-    NeuralNetwork nn(4, layers, 2);
+    std::vector<double> inputs;
+    inputs.resize(16, 0.5);
 
-    std::vector<double> out = nn.forward(inputs);
-    
-    std::ofstream outFile("network.txt");
-    nn.save(outFile);
-    outFile.close();
+    NeuralNetwork nn(16, layers, 4);
+    */
+    //NeuralNetworkAI ai("Networks/NU50exemple.txt");
 
-    char f;
-    std::cin >> f;
-    /*
-    RobinAI ai(tabella);
+    RandomAI ai;
 
     char move;
     while (move = ai.move()) {
@@ -38,7 +35,7 @@ int main() {
         std::cout << "\t\t\t\t\t" << move;
     }
     std::cout << "FINE!!";
-    */
+    
     
 }
 

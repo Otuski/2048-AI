@@ -17,9 +17,16 @@ NeuralNetwork::NeuralNetwork(int numInputs, int widthLayers[], int numLayers)
 	m_Layers.push_back( NeuronLayer(numInputs, widthLayers[0]) );
 
 	for (int i = 1; i < numLayers; i++) {
-		m_Layers.push_back( NeuronLayer(widthLayers[i - 1], widthLayers[0]) );
+		m_Layers.push_back( NeuronLayer(widthLayers[i - 1], widthLayers[i]) );
 	}
 	
+}
+
+NeuralNetwork::NeuralNetwork(const std::string& filename)
+{
+	std::ifstream inFile(filename);
+	load(inFile);
+	inFile.close();
 }
 
 

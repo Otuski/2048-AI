@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="2048.cpp" />
+    <ClCompile Include="AI\NeuralNetworkAI.cpp" />
     <ClCompile Include="AI\RobinAI.cpp" />
     <ClCompile Include="NeuralNetwork\NeuralNetwork.cpp" />
     <ClCompile Include="NeuralNetwork\Neuron.cpp" />
@@ -139,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI\AI.h" />
+    <ClInclude Include="AI\NeuralNetworkAI.h" />
     <ClInclude Include="AI\RobinAI.h" />
     <ClInclude Include="NeuralNetwork\NeuralNetwork.h" />
     <ClInclude Include="NeuralNetwork\Neuron.h" />

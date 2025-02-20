@@ -1,7 +1,5 @@
 #include "RobinAI.h"
 
-RobinAI::RobinAI(Table2048 table) : m_table(table) {}
-
 char RobinAI::move()
 {
 	if (m_table.isValidMoveA()) {

@@ -7,7 +7,7 @@ class RobinAI : AI {
 public:
 	Table2048 m_table;
 
-	RobinAI(Table2048 table);
+	//costruttore implicito sufficiente perché costruisce Table2048
 	virtual char move();
 
 };

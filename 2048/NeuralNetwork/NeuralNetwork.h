@@ -1,6 +1,8 @@
  #pragma once
 
 #include <vector>
+#include <string>
+#include <fstream>
 #include "NeuronLayer.h"
 
 class NeuralNetwork
@@ -12,6 +14,7 @@ private:
 public:
 	NeuralNetwork(std::vector<NeuronLayer> layers);
 	NeuralNetwork(int numInputs, int widthLayers[], int numLayers); //Num Layers è il numero di di interi dell'array widthLayers[]
+	NeuralNetwork(const std::string& filename);
 
 	std::vector<double> forward(std::vector<double> inputs);
 	void mutate(double mutationRate);
