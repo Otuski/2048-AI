@@ -10,7 +10,7 @@ static void menu();
 
 int main() {
     
-    menu();
+    //menu();
     /* per creare NU50
     int layers[4] = {16, 16, 14, 4};
 
@@ -35,13 +35,13 @@ int main() {
 
     AITrainer trainer;
     int forma[] = {4, 4, 4, 4};
-    trainer.createGen(3, forma, 4);
+    trainer.createGen("exemple", 3, forma, 4);
 
-    trainer.playGen(1);
+    trainer.playGen(9);
+
+    trainer.selection(2);
+    trainer.save();
     
-    char t;
-    std::cin >> t;
-
 }
 
 static void menu() {

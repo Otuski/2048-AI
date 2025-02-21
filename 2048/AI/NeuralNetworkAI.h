@@ -11,8 +11,10 @@ class NeuralNetworkAI : AI
 public:
 	Table2048 m_table;
 	NeuralNetwork m_network;
+	double m_fitness;
 
 	NeuralNetworkAI(const std::string& filename);
 	NeuralNetworkAI(int widthLayers[], int numLayers);
+	NeuralNetworkAI();
 	virtual char move();
 };

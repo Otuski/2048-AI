@@ -1,55 +1,116 @@
 #include "AITrainer.h"
 
-void AITrainer::createGen(int n, int widthLayers[], int numLayers)
+#include <fstream>
+#include <sstream>
+#include <fstream>
+#include <algorithm>
+#include <utility>
+
+void AITrainer::createGen(std::string name, int n, int widthLayers[], int numLayers) //può diventare costruttore
 {
 	for (int i = 0; i < n; i++) {
 		m_generation.emplace_back(NeuralNetworkAI(widthLayers, numLayers));
 	}
+	m_generationNumber = 1;
+	m_name = name;
 }
 
 void AITrainer::playGen(int numMatches)
 {
 	for (int i = 0; i < m_generation.size(); i++) {
-		int sum = 0;
+		double sum = 0;
 
 		for (int j = 0; j < numMatches; j++) {
 			
 			while (true) {
 				char move = m_generation[i].move();
-				m_generation[i].m_table.move(move);
+
 				//se la mossa non è valida esci (la rete neurale è deterministica quindi non cambierebbe mai scelta)
 				if (!m_generation[i].m_table.isValidMove(move)) {
 					break;
 				}
+				m_generation[i].m_table.move(move);
 			}
-			sum += m_generation[i].m_table.punteggio;
+			m_generation[i].m_fitness += m_generation[i].m_table.punteggio;
+			m_generation[i].m_table = Table2048();
 		}
 
-		m_points.emplace_back(sum/numMatches);
+		m_generation[i].m_fitness /= numMatches;
 
 		
 	}
 }
 
-void AITrainer::selection()
-{
-	int max1 = m_points[0], max2 = m_points[1];
-	int index1, index2;
-	for (int i = 2; i < m_generation.size(); i++) {
-		if (m_points[i] > max1 || m_points[i] > max2)
-		{
-			if (max1 <= max2) {
-				max1 = m_points[i];
-				index1 = i;
-			}
-			else {
-				max2 = m_points[i];
-				index2 = i;
-			}
-		}
+// Seleziona i migliori n individui
+void AITrainer::selection(int n) {
+	// Controlla che n non superi la dimensione della generazione
+	if (n > m_generation.size())
+		n = m_generation.size();
+
+	// Crea un vettore di coppie (fitness, indice)
+	std::vector<std::pair<double, int>> fitnessIndex;
+	for (int i = 0; i < m_generation.size(); ++i) {
+		fitnessIndex.emplace_back(m_generation[i].m_fitness, i);
 	}
 
-	//da continuare
-	
-	
+	// Ordina le coppie in ordine decrescente in base al fitness
+	std::sort(fitnessIndex.begin(), fitnessIndex.end(),
+		[](const std::pair<double, int>& a, const std::pair<double, int>& b) {
+			return a.first > b.first;
+		});
+
+	// Preleva i primi n indici (le reti migliori)
+	std::vector<NeuralNetworkAI> bests;
+	std::vector<double> bestPoints;
+	for (int i = 0; i < n; ++i) {
+		int idx = fitnessIndex[i].second;
+		bests.push_back(m_generation[idx]);
+	}
+
+	// Aggiorna la generazione e i relativi punteggi con i migliori selezionati
+	m_generation = bests;
+}
+
+
+void AITrainer::save()
+{
+	for (int i = 0; i < m_generation.size(); i++) {
+
+		// Costruisci il nome del file: "gen_<numeroGenerazione>_net_<indice>.txt"
+		std::ostringstream filename;
+		filename << "Networks/" << m_name << "_" << "gen_" << m_generationNumber << "_net_" << (i + 1) << ".txt";
+
+		std::ofstream file(filename.str());
+		m_generation[i].m_network.save(file);
+	}
+}
+
+
+void AITrainer::load(std::string name, int generation)
+{
+	m_name = name;
+	m_generationNumber = generation;
+	for (int i = 0; i < m_generation.size(); i++) {
+
+		// i nomi da inserire sono costruiti così <name>_gen_<NumberGereration>
+		std::ostringstream filename;
+		filename << "Networks/" << m_name << "_" << "gen_" << generation << "_net_" << (i + 1) << ".txt";
+
+		std::ifstream file(filename.str());
+		m_generation[i].m_network.load(file);
+	}
+}
+
+NeuralNetworkAI AITrainer::tournamentSelection(int tournamentSize) {
+
+	NeuralNetworkAI best;
+	bool inizializzato = false;
+	for (int i = 0; i < tournamentSize; i++) {
+		int idx = m_generation.size();
+		if (!inizializzato || m_generation[idx].m_fitness > best.m_fitness) {
+			best = m_generation[idx];
+			inizializzato = true;
+		}
+	}
+	return best;
 }

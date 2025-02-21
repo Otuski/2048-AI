@@ -1,10 +1,13 @@
 #include "NeuralNetworkAI.h"
 
 NeuralNetworkAI::NeuralNetworkAI(const std::string& filename)
-	: m_network(filename) {}
+	: m_network(filename), m_fitness(0) {}
 
 NeuralNetworkAI::NeuralNetworkAI(int widthLayers[], int numLayers)
-	: m_network(16, widthLayers, numLayers) {}
+	: m_network(16, widthLayers, numLayers), m_fitness(0) {}
+
+NeuralNetworkAI::NeuralNetworkAI()
+	: m_network(0, 0, 0), m_fitness(0) {}
 
 char NeuralNetworkAI::move()
 {
