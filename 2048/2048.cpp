@@ -34,10 +34,16 @@ int main() {
     */
 
     AITrainer trainer;
-    int forma[] = {4, 4, 4, 4};
+    int forma[] = {16, 8, 4, 4};
 
-    trainer.load("exemple",1);
+    trainer.createGen("normalized", 50, forma, 4);
+
+    //trainer.load("firstTry", 50);
+    // gens, numMatch, elits, children, tournament size
+    trainer.evolve(50, 100, 10, 40, 4);
     trainer.save();
+
+    std::cout << trainer.m_name << " dopo " << trainer.m_generationNumber << " generazioni ha fatto il massimo di " << trainer.m_generation[0].m_fitness;
 
     /*
     trainer.createGen("exemple", 20, forma, 4);

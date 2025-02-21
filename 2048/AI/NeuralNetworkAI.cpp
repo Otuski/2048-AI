@@ -1,5 +1,7 @@
 #include "NeuralNetworkAI.h"
 
+#include <cmath>
+
 NeuralNetworkAI::NeuralNetworkAI(const std::string& filename)
 	: m_network(filename), m_fitness(0) {}
 
@@ -18,7 +20,7 @@ char NeuralNetworkAI::move()
 	std::vector<double> input;
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			input.emplace_back(m_table.matrice[i][j]);
+			input.emplace_back( log(m_table.matrice[i][j]) );
 		}
 	}
 

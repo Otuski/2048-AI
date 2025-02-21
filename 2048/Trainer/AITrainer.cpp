@@ -1,6 +1,7 @@
 #include "AITrainer.h"
 
 #include <fstream>
+#include <iostream>
 #include <sstream>
 #include <fstream>
 #include <algorithm>
@@ -41,8 +42,13 @@ void AITrainer::playGen(int numMatches)
 	}
 }
 
+
 // Seleziona i migliori n individui
 void AITrainer::selection(int n) {
+	//controlli che le la generazioni non sia vuota
+	if (n <= 0 || m_generation.empty())
+		return;
+
 	// Controlla che n non superi la dimensione della generazione
 	if (n > m_generation.size())
 		n = m_generation.size();
@@ -125,19 +131,24 @@ NeuralNetworkAI AITrainer::tournamentSelection(int tournamentSize) {
 	return best;
 }
 
-void AITrainer::crossoverTournament(int childrens, int tournamentSize) {
-	for (int i = 0; i < childrens; i++) {
-		NeuralNetworkAI children(tournamentSelection(tournamentSize).m_network.crossover(tournamentSelection(tournamentSize).m_network));
-		m_generation.emplace_back(children);
+void AITrainer::crossoverTournament(int numChildren, int tournamentSize) {
+	for (int i = 0; i < numChildren; i++) {
+		NeuralNetworkAI parent1 = tournamentSelection(tournamentSize);
+		NeuralNetworkAI parent2 = tournamentSelection(tournamentSize);
+		NeuralNetworkAI child(parent1.m_network.crossover(parent2.m_network));
+		double mutationRate = 1.0 * exp(-0.5 * static_cast<double>(m_generationNumber));
+		child.m_network.mutate(mutationRate);
+		m_generation.emplace_back(child);
 	}
 }
 
-void AITrainer::evolve(int gens, int numMatches, int elits, int childrens, int tournamentSize)
-{
-	for (int i = 0; i < gens; i++) {
-		
+void AITrainer::evolve(int gens, int numMatches, int elits, int numChildren, int tournamentSize) {
+	int lastGen = m_generationNumber + gens;
+	for (int i = m_generationNumber; i < lastGen; i++) {
 		playGen(numMatches);
 		selection(elits);
-		crossoverTournament(childrens, tournamentSize);
+		crossoverTournament(numChildren, tournamentSize);
+		m_generationNumber++; // Aggiorna il numero di generazione
+		std::cout << "Generazione " << i << " ha fatto come massimo di " << m_generation[0].m_fitness << "\n";
 	}
 }
