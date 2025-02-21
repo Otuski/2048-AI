@@ -18,6 +18,7 @@ public:
 
 	std::vector<double> forward(std::vector<double> inputs);
 	void mutate(double mutationRate);
+	NeuralNetwork crossover(NeuralNetwork parent);
 
 	void save(std::ostream& out);
 	void load(std::istream& in);

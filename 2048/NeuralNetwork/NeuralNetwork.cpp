@@ -13,7 +13,7 @@ NeuralNetwork::NeuralNetwork(std::vector<NeuronLayer> layers)
 
 NeuralNetwork::NeuralNetwork(int numInputs, int widthLayers[], int numLayers)
 {
-
+	if (widthLayers == 0) { return; }
 	m_Layers.push_back( NeuronLayer(numInputs, widthLayers[0]) );
 
 	for (int i = 1; i < numLayers; i++) {
@@ -51,6 +51,15 @@ void NeuralNetwork::mutate(double mutationRate)
 	for (NeuronLayer& layer : m_Layers) {
 		layer.mutate(mutationRate);
 	}
+}
+
+NeuralNetwork NeuralNetwork::crossover(NeuralNetwork parent)
+{
+	std::vector<NeuronLayer> result;
+	for (int i = 0; i < m_Layers.size(); i++) {
+		result.emplace_back(m_Layers[i].crossover(parent.m_Layers[i]));
+	}
+	return result;
 }
 
 void NeuralNetwork::save(std::ostream& out)

@@ -20,5 +20,7 @@ public:
 	void load(std::string nameGeneration, int generation);
 
 	NeuralNetworkAI tournamentSelection(int tournamentSize);
+	void crossoverTournament(int childrens, int tournamentSize);
+	void evolve(int gens, int numMatches, int elits, int childrens, int tournamentSize);
 
 };

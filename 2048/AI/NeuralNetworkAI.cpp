@@ -6,6 +6,9 @@ NeuralNetworkAI::NeuralNetworkAI(const std::string& filename)
 NeuralNetworkAI::NeuralNetworkAI(int widthLayers[], int numLayers)
 	: m_network(16, widthLayers, numLayers), m_fitness(0) {}
 
+NeuralNetworkAI::NeuralNetworkAI(NeuralNetwork network)
+	:m_network(network), m_fitness(0) {}
+
 NeuralNetworkAI::NeuralNetworkAI()
 	: m_network(0, 0, 0), m_fitness(0) {}
 

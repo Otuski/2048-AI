@@ -15,6 +15,7 @@ public:
 
 	NeuralNetworkAI(const std::string& filename);
 	NeuralNetworkAI(int widthLayers[], int numLayers);
+	NeuralNetworkAI(NeuralNetwork network);
 	NeuralNetworkAI();
 	virtual char move();
 };

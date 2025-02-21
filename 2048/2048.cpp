@@ -35,12 +35,20 @@ int main() {
 
     AITrainer trainer;
     int forma[] = {4, 4, 4, 4};
-    trainer.createGen("exemple", 3, forma, 4);
 
-    trainer.playGen(9);
-
-    trainer.selection(2);
+    trainer.load("exemple",1);
     trainer.save();
+
+    /*
+    trainer.createGen("exemple", 20, forma, 4);
+
+    trainer.playGen(17);
+
+    trainer.selection(10);
+
+
+    trainer.crossoverTournament(2,3);
+    */
     
 }
 

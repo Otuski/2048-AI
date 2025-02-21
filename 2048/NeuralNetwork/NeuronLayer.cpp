@@ -26,6 +26,15 @@ void NeuronLayer::mutate(double mutationRate)
 	}
 }
 
+NeuronLayer NeuronLayer::crossover(NeuronLayer parent)
+{
+	std::vector<Neuron> result;
+	for (int i = 0; i < m_Neurons.size(); i++) {
+		result.emplace_back(m_Neurons[i].crossover(parent.m_Neurons[i]));
+	}
+	return result;
+}
+
 void NeuronLayer::save(std::ostream& out)
 {
 	out << m_Neurons.size() << "\n";

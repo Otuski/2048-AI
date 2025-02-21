@@ -25,6 +25,27 @@ void Neuron::mutate(double mutationRate)
     }
 }
 
+Neuron Neuron::crossover(Neuron parent)
+{
+    std::vector<double> weights1 = m_Weights;
+    std::vector<double> weights2 = parent.m_Weights;
+
+    std::vector<double> childWeights;
+    // Per ogni peso, scegliamo casualmente da quale genitore prelevarlo
+    for (int i = 0; i < weights1.size(); i++) {
+        if (rand() % 2 == 0) {
+            childWeights.push_back(weights1[i]);
+        }
+        else {
+            childWeights.push_back(weights2[i]);
+        }
+    }
+    // Per il bias, facciamo lo stesso
+    double childBias = (rand() % 2 == 0) ? m_Bias : parent.m_Bias;
+
+    return Neuron(childBias, childWeights);
+}
+
 void Neuron::save(std::ostream& out)
 {
     // Salviamo prima il bias, poi il numero di pesi, e infine i pesi

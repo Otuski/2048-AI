@@ -35,7 +35,7 @@ void AITrainer::playGen(int numMatches)
 			m_generation[i].m_table = Table2048();
 		}
 
-		m_generation[i].m_fitness /= numMatches;
+		m_generation[i].m_fitness /= (double)numMatches;
 
 		
 	}
@@ -90,14 +90,24 @@ void AITrainer::load(std::string name, int generation)
 {
 	m_name = name;
 	m_generationNumber = generation;
-	for (int i = 0; i < m_generation.size(); i++) {
+	m_generation.clear();  // Assicurati di svuotare la generazione corrente
 
-		// i nomi da inserire sono costruiti così <name>_gen_<NumberGereration>
+	int index = 1;
+	while (true) {
 		std::ostringstream filename;
-		filename << "Networks/" << m_name << "_" << "gen_" << generation << "_net_" << (i + 1) << ".txt";
+		filename << "Networks/" << m_name << "_gen_" << generation << "_net_" << index << ".txt";
 
 		std::ifstream file(filename.str());
-		m_generation[i].m_network.load(file);
+		if (!file.is_open()) {
+			// Non esiste un file con questo indice: esci dal ciclo
+			break;
+		}
+
+		NeuralNetworkAI network;
+		network.m_network.load(file);
+		m_generation.push_back(network);
+
+		++index;
 	}
 }
 
@@ -106,11 +116,28 @@ NeuralNetworkAI AITrainer::tournamentSelection(int tournamentSize) {
 	NeuralNetworkAI best;
 	bool inizializzato = false;
 	for (int i = 0; i < tournamentSize; i++) {
-		int idx = m_generation.size();
+		int idx = rand() % m_generation.size();
 		if (!inizializzato || m_generation[idx].m_fitness > best.m_fitness) {
 			best = m_generation[idx];
 			inizializzato = true;
 		}
 	}
 	return best;
+}
+
+void AITrainer::crossoverTournament(int childrens, int tournamentSize) {
+	for (int i = 0; i < childrens; i++) {
+		NeuralNetworkAI children(tournamentSelection(tournamentSize).m_network.crossover(tournamentSelection(tournamentSize).m_network));
+		m_generation.emplace_back(children);
+	}
+}
+
+void AITrainer::evolve(int gens, int numMatches, int elits, int childrens, int tournamentSize)
+{
+	for (int i = 0; i < gens; i++) {
+		
+		playGen(numMatches);
+		selection(elits);
+		crossoverTournament(childrens, tournamentSize);
+	}
 }
